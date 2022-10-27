@@ -10,6 +10,7 @@ import {
 } from './style';
 import Select from '../../components/common/Select';
 import Label from '../../components/common/Label';
+import noImageAvailable from '../../assets/no-image-available.jpg';
 
 function Home() {
   const {
@@ -65,15 +66,14 @@ function Home() {
   const renderHouses = () => (
     houseData?.data.house.map((item) => {
       if (item.house_photo.length <= 0) {
-        const nullHousePhoto = [{
-          photo_id: 0,
-          photo: 'https://res.cloudinary.com/dbhvedme6/image/upload/v1666614484/no-photo_g1qmse.webp',
-        }];
         return (
           <Card
             key={item.house_id}
             houseID={item.house_id}
-            housePhoto={nullHousePhoto}
+            housePhoto={[{
+              photo_id: 0,
+              photo: noImageAvailable,
+            }]}
             name={item.house_name}
             location={item.house_city_name}
             price={item.house_price}

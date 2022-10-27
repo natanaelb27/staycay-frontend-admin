@@ -26,6 +26,7 @@ import {
   SpanDetail,
 } from './style';
 import { showErrorToast } from '../../helpers/Toast';
+import noImageAvailable from '../../assets/no-image-available.jpg';
 
 function House() {
   const navigate = useNavigate();
@@ -125,7 +126,15 @@ function House() {
       <HouseImageContainer>
         {houseLoading && <SkeletonImage classes="full" />}
         {!houseLoading && !houseError && (
-          <Carousel housePhoto={houseData?.data.house_photo} />
+          houseData?.data.house_photo.length >= 1 ? (
+            <Carousel housePhoto={houseData?.data.house_photo} />
+          ) : (
+            <Carousel housePhoto={[{
+              photo_id: 0,
+              photo: noImageAvailable,
+            }]}
+            />
+          )
         )}
       </HouseImageContainer>
       <HouseContentContainer>
