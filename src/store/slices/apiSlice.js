@@ -30,8 +30,10 @@ export const apiSlice = createApi({
         filterCheckOutDate,
         sortBy,
         sort,
+        limit,
+        page,
       }) => ({
-        url: `/house?searchName=${filterHouseName}&searchCity=${filterCity}&searchCheckInDate=${filterCheckInDate}&searchCheckOutDate=${filterCheckOutDate}&sortBy=${sortBy}&sort=${sort}`,
+        url: `/house?searchName=${filterHouseName}&searchCity=${filterCity}&searchCheckInDate=${filterCheckInDate}&searchCheckOutDate=${filterCheckOutDate}&sortBy=${sortBy}&sort=${sort}&limit=${limit}&page=${page}`,
         method: 'GET',
       }),
       providesTags: ['Houses'],
@@ -166,7 +168,7 @@ export const apiSlice = createApi({
 
 export const {
   useLoginMutation,
-  useGetHouseQuery,
+  useLazyGetHouseQuery,
   useGetUnscopedHouseByIDQuery,
   useGetCityQuery,
   useGetHouseByIDQuery,

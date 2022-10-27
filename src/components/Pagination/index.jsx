@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  PaginationContainer,
   PageButton,
   EllipsesButton,
   HelperButton,
@@ -33,7 +34,7 @@ function Pagination({
   const ellipsis = '...';
 
   return (
-    <div>
+    <PaginationContainer>
       <HelperButton
         type="button"
         onClick={onPrevious}
@@ -72,7 +73,7 @@ function Pagination({
       >
         Next
       </HelperButton>
-    </div>
+    </PaginationContainer>
   );
 }
 

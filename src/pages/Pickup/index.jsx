@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Label from '../../components/common/Label';
 import Select from '../../components/common/Select';
 import { useGetPickupStatusesQuery, useLazyGetPickupDetailsQuery } from '../../store/slices/apiSlice';
@@ -41,9 +41,14 @@ function Pickup() {
     getPickupDetails({ filterPickupStatusName, limit, page: currentPage });
   }, []);
 
+  const pickupRef = useRef(null);
+
+  const executeScroll = () => pickupRef.current.scrollIntoView();
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
     getPickupDetails({ filterPickupStatusName, limit, page });
+    executeScroll();
   };
 
   const renderPickups = () => (
@@ -53,7 +58,6 @@ function Pickup() {
         pickupData={item}
       />
     ))
-
   );
 
   const renderMaxSelections = () => (
@@ -88,7 +92,7 @@ function Pickup() {
   };
 
   return (
-    <Container>
+    <Container ref={pickupRef}>
       <Title>Pickups</Title>
       <MaxSelectionContainer>
         <SpanSelection id="all" className={active === 'all' ? 'active' : undefined} onClick={handleClick}>All</SpanSelection>
@@ -96,6 +100,7 @@ function Pickup() {
       </MaxSelectionContainer>
       <MinSelectionContainer>
         <Label>
+          Filter By
           <Select
             value={filterPickupStatusName}
             handleChange={handleSelectChange}

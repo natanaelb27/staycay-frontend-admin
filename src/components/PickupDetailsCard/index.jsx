@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import {
   MainContainer,
   SpanTitle,
@@ -122,6 +123,14 @@ function PickupDetailsCard({
         <ContentContainer>
           <SpanTitle>Guest Email</SpanTitle>
           <SpanDetail>{userData?.data.email}</SpanDetail>
+        </ContentContainer>
+        <ContentContainer>
+          <SpanTitle>Check In Date</SpanTitle>
+          <SpanDetail>{moment(reservationData?.data.reservation.check_in_date).format('D MMMM YYYY')}</SpanDetail>
+        </ContentContainer>
+        <ContentContainer>
+          <SpanTitle>Check Out Date</SpanTitle>
+          <SpanDetail>{moment(reservationData?.data.reservation.check_out_date).format('D MMMM YYYY')}</SpanDetail>
         </ContentContainer>
         <ContentContainer>
           <SpanTitle>Pickup Address</SpanTitle>

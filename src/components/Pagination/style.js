@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const PaginationContainer = styled.div`
+    display: grid;
+    margin-top: 2%;
+    grid-auto-flow: column;
+    justify-content: center;
+    padding: 2%;
+`;
+
 export const PageButton = styled.button`
     padding: 0.5rem;
     font-size: 0.8rem;

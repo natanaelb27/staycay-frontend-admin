@@ -19,7 +19,7 @@ const Routes = () => {
       children: [
         {
           path: '/',
-          element: <RequireAuth redirectTo="/login"><Home />,</RequireAuth>
+          element: <RequireAuth redirectTo="/login"><Home /></RequireAuth>,
         },
         {
           path: '/login',
@@ -31,7 +31,7 @@ const Routes = () => {
         },
         {
           path: '/house/:houseID',
-          element: <RequireAuth redirectTo="/login"><House />,</RequireAuth>
+          element: <RequireAuth redirectTo="/login"><House /></RequireAuth>,
         },
         {
           path: '/server-error',

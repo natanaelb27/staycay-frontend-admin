@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { MainContainer, Card, SkeletonCard } from '../../components';
-import { useGetHouseQuery } from '../../store/slices/apiSlice';
+import {
+  Pagination, MainContainer, Card, SkeletonCard,
+} from '../../components';
+import { useLazyGetHouseQuery } from '../../store/slices/apiSlice';
 import {
   CardContainer,
   SortContainer,
@@ -19,11 +21,11 @@ function Home() {
     sort: 'asc',
   });
 
-  const {
+  const [getHouse, {
     data: houseData,
     error: houseError,
     isFetching: houseLoading,
-  } = useGetHouseQuery({
+  }] = useLazyGetHouseQuery({
     filterHouseName,
     filterCity,
     filterCheckInDate,
@@ -31,6 +33,28 @@ function Home() {
     sortBy: sortInput.sortBy,
     sort: sortInput.sort,
   });
+
+  const limit = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    getHouse({
+      filterHouseName,
+      filterCity,
+      filterCheckInDate,
+      filterCheckOutDate,
+      sortBy: sortInput.sortBy,
+      sort: sortInput.sort,
+      limit,
+      page: 1,
+    });
+  }, [filterHouseName,
+    filterCity,
+    filterCheckInDate,
+    filterCheckOutDate,
+    sortInput.sortBy,
+    sortInput.sort]);
 
   const skeletonLoading = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -76,6 +100,24 @@ function Home() {
     setSortInput({ ...sortInput, [e.target.name]: e.target.value });
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    getHouse({
+      filterHouseName,
+      filterCity,
+      filterCheckInDate,
+      filterCheckOutDate,
+      sortBy: sortInput.sortBy,
+      sort: sortInput.sort,
+      limit,
+      page,
+    });
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  };
+
   return (
     <MainContainer>
       <SortContainer>
@@ -115,6 +157,13 @@ function Home() {
           renderHouses()
         )}
       </CardContainer>
+      {houseData?.data.pagination && (
+      <Pagination
+        currentPage={currentPage}
+        totalPages={houseData?.data.pagination.total_pages}
+        onPageChange={handlePageChange}
+      />
+      )}
     </MainContainer>
   );
 }
