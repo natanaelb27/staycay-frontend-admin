@@ -109,6 +109,10 @@ function PickupDetailsCard({
           <SpanDetail>{houseData?.data.house_name}</SpanDetail>
         </ContentContainer>
         <ContentContainer>
+          <SpanTitle>House City</SpanTitle>
+          <SpanDetail>{houseData?.data.house_city_name}</SpanDetail>
+        </ContentContainer>
+        <ContentContainer>
           <SpanTitle>Host Name</SpanTitle>
           <SpanDetail>{hostData?.data.name}</SpanDetail>
         </ContentContainer>

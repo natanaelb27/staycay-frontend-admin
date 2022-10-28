@@ -1,18 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Label from '../../components/common/Label';
 import Select from '../../components/common/Select';
+import Input from '../../components/common/Input';
 import { useGetPickupStatusesQuery, useLazyGetPickupDetailsQuery } from '../../store/slices/apiSlice';
 import {
-  Container,
+  MainContainer,
   Title,
+  InputContainer,
   MaxSelectionContainer,
   MinSelectionContainer,
   SpanSelection,
   PickupContainer,
   PaginationContainer,
 } from './style';
-
 import { PickupDetailsCard, Pagination } from '../../components';
 
 function Pickup() {
@@ -24,21 +26,24 @@ function Pickup() {
   const {
     data: pickupStatusData,
   } = useGetPickupStatusesQuery();
-  const [active, setActive] = useState('all');
   const [filterPickupStatusName, setFilterPickupStatusName] = useState('all');
+  const [filterReservationCode, setFilterReservationCode] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const limit = 4;
+  const limit = 3;
 
   const handleClick = (e) => {
     setCurrentPage(1);
-    setActive(e.target.id);
     setFilterPickupStatusName(e.target.id);
-    getPickupDetails({ filterPickupStatusName: e.target.id, limit, page: 1 });
+    getPickupDetails({
+      filterPickupStatusName: e.target.id, filterReservationCode, limit, page: 1,
+    });
   };
 
   useEffect(() => {
-    getPickupDetails({ filterPickupStatusName, limit, page: currentPage });
+    getPickupDetails({
+      filterPickupStatusName, filterReservationCode, limit, page: currentPage,
+    });
   }, []);
 
   const pickupRef = useRef(null);
@@ -47,7 +52,9 @@ function Pickup() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    getPickupDetails({ filterPickupStatusName, limit, page });
+    getPickupDetails({
+      filterPickupStatusName, filterReservationCode, limit, page,
+    });
     executeScroll();
   };
 
@@ -65,7 +72,7 @@ function Pickup() {
       <SpanSelection
         key={item.pickup_status_id}
         id={item.pickup_status_name}
-        className={active === item.pickup_status_name ? 'active' : undefined}
+        className={filterPickupStatusName === item.pickup_status_name ? 'active' : undefined}
         onClick={handleClick}
       >
         {item.pickup_status_name}
@@ -86,23 +93,38 @@ function Pickup() {
 
   const handleSelectChange = (e) => {
     setCurrentPage(1);
-    setActive(e.target.value);
     setFilterPickupStatusName(e.target.value);
-    getPickupDetails({ filterPickupStatusName: e.target.value, limit, page: 1 });
+    getPickupDetails({
+      filterPickupStatusName: e.target.value, filterReservationCode, limit, page: 1,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    setCurrentPage(1);
+    setFilterReservationCode(e.target.value);
+    getPickupDetails({
+      filterPickupStatusName, filterReservationCode: e.target.value, limit, page: 1,
+    });
   };
 
   return (
-    <Container ref={pickupRef}>
+    <MainContainer ref={pickupRef}>
       <Title>Pickups</Title>
+      <InputContainer>
+        <Label>
+          Reservation Code
+          <Input inputType="text" handleChange={handleInputChange} inputPlaceholder="Search reservation code" />
+        </Label>
+      </InputContainer>
       <MaxSelectionContainer>
-        <SpanSelection id="all" className={active === 'all' ? 'active' : undefined} onClick={handleClick}>All</SpanSelection>
+        <SpanSelection id="all" className={filterPickupStatusName === 'all' ? 'active' : undefined} onClick={handleClick}>All</SpanSelection>
         {renderMaxSelections()}
       </MaxSelectionContainer>
       <MinSelectionContainer>
         <Label>
           Filter By
           <Select
-            value={filterPickupStatusName}
+            selectValue={filterPickupStatusName}
             handleChange={handleSelectChange}
           >
             <option value="all">All</option>
@@ -122,7 +144,8 @@ function Pickup() {
         />
       </PaginationContainer>
       )}
-    </Container>
+      <ToastContainer />
+    </MainContainer>
   );
 }
 

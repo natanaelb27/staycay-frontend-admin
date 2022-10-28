@@ -171,11 +171,11 @@ export const Icon = styled(FontAwesomeIcon)`
     height: 1rem; 
     border-radius: 9999px; 
     cursor: pointer; 
+    margin-left: 0.5rem;
+    margin-right: 0.5rem; 
+    display: inline-flex; 
 
     @media (min-width: 768px) { 
-        display: inline-flex; 
-        margin-left: 0.5rem;
-        margin-right: 0.5rem; 
     }
 `;
 

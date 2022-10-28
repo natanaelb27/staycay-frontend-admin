@@ -3,9 +3,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars, faUser, faSearch,
-  faFilter, faTrashAlt, faUserAlt,
-  faUserEdit, faHome, faGamepad,
-  faSignOutAlt, faSignInAlt, faHouseUser,
+  faFilter, faTrashAlt, faCarAlt,
+  faHome, faSignOutAlt, faHouseUser,
 } from '@fortawesome/free-solid-svg-icons';
 // import { faBars, faUser, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -314,12 +313,16 @@ function Navbar() {
           : null}
       </Nav>
       <MobileNavbar>
-        <MobileMenuLink to="/">
-          <MobileMenuContainer>
-            <MobileIcon icon={faHome} className={active === 'home' ? 'active' : undefined} />
-            <MobileSpan>Home</MobileSpan>
-          </MobileMenuContainer>
-        </MobileMenuLink>
+        {
+        localStorage.getItem('admin') ? (
+          <MobileMenuLink to="/">
+            <MobileMenuContainer>
+              <MobileIcon icon={faHome} className={active === 'home' ? 'active' : undefined} />
+              <MobileSpan>Home</MobileSpan>
+            </MobileMenuContainer>
+          </MobileMenuLink>
+        ) : null
+        }
         {
         !localStorage.getItem('admin') ? (
           <MobileMenuLink to="/login">
@@ -334,7 +337,7 @@ function Navbar() {
         localStorage.getItem('admin') ? (
           <MobileMenuLink to="/pickup">
             <MobileMenuContainer>
-              <MobileIcon icon={faUser} className={active === 'pickup' ? 'active' : undefined} />
+              <MobileIcon icon={faCarAlt} className={active === 'pickup' ? 'active' : undefined} />
               <MobileSpan>Pickup</MobileSpan>
             </MobileMenuContainer>
           </MobileMenuLink>

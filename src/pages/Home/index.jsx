@@ -5,6 +5,7 @@ import {
 } from '../../components';
 import { useLazyGetHouseQuery } from '../../store/slices/apiSlice';
 import {
+  Container,
   CardContainer,
   SortContainer,
 } from './style';
@@ -120,50 +121,52 @@ function Home() {
 
   return (
     <MainContainer>
-      <SortContainer>
-        <Label>
-          Sort By
-          <Select
-            selectName="sortBy"
-            selectValue={sortInput.sortBy}
-            handleChange={handleChangeSortInput}
-          >
-            <option
-              value="name"
+      <Container>
+        <SortContainer>
+          <Label>
+            Sort By
+            <Select
+              selectName="sortBy"
+              selectValue={sortInput.sortBy}
+              handleChange={handleChangeSortInput}
             >
-              House Name
+              <option
+                value="name"
+              >
+                House Name
 
-            </option>
-            <option value="price">Rent Price</option>
-            <option value="city_name">City</option>
-          </Select>
-        </Label>
-        <Label>
-          Sort
-          <Select
-            selectName="sort"
-            selectValue={sortInput.sort}
-            handleChange={handleChangeSortInput}
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </Select>
-        </Label>
-      </SortContainer>
-      <CardContainer>
-        {houseLoading && (renderLoading())}
-        {!houseLoading && houseError && <p>{houseError}</p>}
-        {!houseLoading && !houseError && (
-          renderHouses()
+              </option>
+              <option value="price">Rent Price</option>
+              <option value="city_name">City</option>
+            </Select>
+          </Label>
+          <Label>
+            Sort
+            <Select
+              selectName="sort"
+              selectValue={sortInput.sort}
+              handleChange={handleChangeSortInput}
+            >
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </Select>
+          </Label>
+        </SortContainer>
+        <CardContainer>
+          {houseLoading && (renderLoading())}
+          {!houseLoading && houseError && <p>{houseError}</p>}
+          {!houseLoading && !houseError && (
+            renderHouses()
+          )}
+        </CardContainer>
+        {houseData?.data.pagination && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={houseData?.data.pagination.total_pages}
+          onPageChange={handlePageChange}
+        />
         )}
-      </CardContainer>
-      {houseData?.data.pagination && (
-      <Pagination
-        currentPage={currentPage}
-        totalPages={houseData?.data.pagination.total_pages}
-        onPageChange={handlePageChange}
-      />
-      )}
+      </Container>
     </MainContainer>
   );
 }

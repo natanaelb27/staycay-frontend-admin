@@ -11,7 +11,6 @@ export const FooterContainer = styled.div`
     justify-content: center;
     gap: 3rem;
     border-top: 1px solid #ccc;
-    margin-top: 2rem;
 
     @media (max-width: 768px) {
         gap: 1rem;

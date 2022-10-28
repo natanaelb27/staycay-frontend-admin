@@ -139,10 +139,11 @@ export const apiSlice = createApi({
     getPickupDetails: builder.query({
       query: ({
         filterPickupStatusName,
+        filterReservationCode,
         limit,
         page,
       }) => ({
-        url: `/pickup?filterPickupStatusName=${filterPickupStatusName}&limit=${limit}&page=${page}`,
+        url: `/pickup?filterPickupStatusName=${filterPickupStatusName}&filterReservationCode=${filterReservationCode}&limit=${limit}&page=${page}`,
         method: 'GET',
       }),
       providesTags: ['Pickups'],

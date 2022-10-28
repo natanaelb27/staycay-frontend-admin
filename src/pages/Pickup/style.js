@@ -1,9 +1,22 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-    display: grid;
-    height: fit-content;
-    margin-top: 1%;
+// export const Container = styled.div`
+//     display: grid;
+//     height: fit-content;
+//     margin-top: 1%;
+// `;
+
+export const MainContainer = styled.div`
+    max-width: 100%;
+    align-content: center; 
+    place-items: center; 
+    padding-left: 15%;
+    padding-right: 15%; 
+
+
+    @media (max-width: 500px) {
+        padding: 0.5rem;
+    }
 `;
 
 export const Title = styled.h1`
@@ -13,10 +26,18 @@ export const Title = styled.h1`
     letter-spacing: 0.025em; 
 `;
 
+export const InputContainer = styled.div`
+    display: grid;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+`;
+
 export const MaxSelectionContainer = styled.div`
     display: flex;
     padding: 1rem;
     justify-content: space-evenly;
+    text-align: center;
 
     @media (max-width: 768px) {
         display: none;
