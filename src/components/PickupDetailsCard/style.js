@@ -53,7 +53,6 @@ export const EditButton = styled.button`
 
 export const EditContainer = styled.div`
     display: grid;
-    /* grid-template-rows: 1fr 0.5fr; */
 `;
 
 export const SaveButtonContainer = styled.div`

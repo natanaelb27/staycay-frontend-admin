@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import {
   CarouselContainer,
   CarouselInner,

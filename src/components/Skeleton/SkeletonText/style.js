@@ -12,7 +12,6 @@ export const SkeletonContainer = styled.div`
         opacity: .5;
     }
     }; 
-    max-width: 24rem; 
     border-radius: 0.25rem; 
     border-width: 1px; 
     border-color: #E5E7EB; 
@@ -20,10 +19,11 @@ export const SkeletonContainer = styled.div`
 
 
     @media (min-width: 768px) { 
-    padding: 1.5rem; 
+        padding: 1.5rem; 
     }
 
     &.full {
+        width: 100%;
         max-width: 100%;
     }
 `;

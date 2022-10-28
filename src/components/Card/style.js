@@ -75,19 +75,8 @@ export const Image = styled.div`
     border: 0.1px solid gray;
 `;
 
-// export const Image = styled.img`
-//     background-size: cover;
-//     background-image: ${(props) => (props.imgSrc ? props.imgSrc : null)};
-
-//     width: 20rem;
-//     height: 20rem;
-//     border-radius: 20px;
-//     border: 0.1px solid gray;
-// `;
-
 export const Slide = styled.div`
     opacity: 0;
-    /* transform: translateX(-100%); */
     transition-duration: 1s ease;
 
     &.active {
@@ -106,11 +95,3 @@ export const BoldSpan = styled.span`
     font-weight: bold;
 
 `;
-
-// export const Wrapper = styled.div`
-//     height: 20rem;
-//     width: 20rem;
-//     border-radius: 20px;
-//     background-size: cover;
-//     background-image: ${(props) => (props.img ? `url(${props.img})` : null)};
-// `;

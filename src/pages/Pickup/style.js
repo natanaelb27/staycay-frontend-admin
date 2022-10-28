@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-// export const Container = styled.div`
-//     display: grid;
-//     height: fit-content;
-//     margin-top: 1%;
-// `;
-
 export const MainContainer = styled.div`
     max-width: 100%;
     align-content: center; 
@@ -42,6 +36,19 @@ export const MaxSelectionContainer = styled.div`
     @media (max-width: 768px) {
         display: none;
     }
+`;
+
+export const LoadingContainer = styled.div`
+    display: grid;
+    justify-items: center;
+    align-items: center;
+`;
+
+export const LoadingPickupCardContainer = styled.div`
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
 `;
 
 export const MinSelectionContainer = styled.div`
@@ -82,23 +89,8 @@ export const PickupContainer = styled.div`
     padding-top: 2%;
     gap: 1rem;
     justify-content: center;
-    /* grid-template-columns: 1fr 1fr; */
 
-    @media (max-width: 1100px) {
-        /* grid-template-columns: 1fr; */
-    }
 `;
-
-// export const ReservationContainer = styled.div`
-//     display: grid;
-//     gap: 1rem;
-//     justify-content: center;
-//     grid-template-columns: 1fr 1fr;
-
-//     @media (max-width: 1100px) {
-//         grid-template-columns: 1fr;
-//     }
-// `;
 
 export const PaginationContainer = styled.div`
     display: grid;

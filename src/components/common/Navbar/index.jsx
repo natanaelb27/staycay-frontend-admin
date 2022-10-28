@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars, faUser, faSearch,
   faFilter, faTrashAlt, faCarAlt,
-  faHome, faSignOutAlt, faHouseUser,
+  faHome, faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
-// import { faBars, faUser, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import 'react-date-range/dist/styles.css';
-// import 'react-date-range/dist/theme/default.css';
 import moment from 'moment';
 
 import {
@@ -25,7 +21,6 @@ import {
   NavMenuList,
   NavMenuLink,
   FilterContainer,
-  // FilterIcon,
   FilterSpan,
   Icon,
   DropdownContainer,

@@ -13,10 +13,6 @@ import {
 function DangerModal({
   isShow, onClose, title, children, handleSubmit, submitText,
 }) {
-  // if (!isShow) {
-  //   return null;
-  // }
-
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();

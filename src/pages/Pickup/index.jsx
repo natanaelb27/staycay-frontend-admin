@@ -1,9 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Label from '../../components/common/Label';
 import Select from '../../components/common/Select';
 import Input from '../../components/common/Input';
+import Loading from '../../components/common/Loading';
+import { SkeletonText, PickupDetailsCard, Pagination } from '../../components';
 import { useGetPickupStatusesQuery, useLazyGetPickupDetailsQuery } from '../../store/slices/apiSlice';
 import {
   MainContainer,
@@ -11,20 +12,24 @@ import {
   InputContainer,
   MaxSelectionContainer,
   MinSelectionContainer,
+  LoadingContainer,
+  LoadingPickupCardContainer,
   SpanSelection,
   PickupContainer,
   PaginationContainer,
 } from './style';
-import { PickupDetailsCard, Pagination } from '../../components';
 
 function Pickup() {
   const [getPickupDetails, {
     data: pickupData,
+    error: pickupError,
     isLoading: pickupLoading,
   }] = useLazyGetPickupDetailsQuery();
 
   const {
     data: pickupStatusData,
+    error: pickupStatusError,
+    isLoading: pickupStatusLoading,
   } = useGetPickupStatusesQuery();
   const [filterPickupStatusName, setFilterPickupStatusName] = useState('all');
   const [filterReservationCode, setFilterReservationCode] = useState('');
@@ -117,33 +122,69 @@ function Pickup() {
         </Label>
       </InputContainer>
       <MaxSelectionContainer>
-        <SpanSelection id="all" className={filterPickupStatusName === 'all' ? 'active' : undefined} onClick={handleClick}>All</SpanSelection>
-        {renderMaxSelections()}
+        {
+          pickupStatusLoading && (<Loading />)
+        }
+        {
+          !pickupStatusLoading && !pickupStatusError && (
+            <>
+              <SpanSelection id="all" className={filterPickupStatusName === 'all' ? 'active' : undefined} onClick={handleClick}>All</SpanSelection>
+              {renderMaxSelections()}
+            </>
+          )
+        }
       </MaxSelectionContainer>
       <MinSelectionContainer>
-        <Label>
-          Filter By
-          <Select
-            selectValue={filterPickupStatusName}
-            handleChange={handleSelectChange}
-          >
-            <option value="all">All</option>
-            {renderMinSelections()}
-          </Select>
-        </Label>
+        {
+          pickupStatusLoading && (
+          <LoadingContainer>
+            <Loading />
+          </LoadingContainer>
+          )
+        }
+        {
+          !pickupStatusLoading && !pickupStatusError && (
+            <Label>
+              Filter By
+              <Select
+                selectValue={filterPickupStatusName}
+                handleChange={handleSelectChange}
+              >
+                <option value="all">All</option>
+                {renderMinSelections()}
+              </Select>
+            </Label>
+          )
+        }
+
       </MinSelectionContainer>
-      <PickupContainer>
-        {renderPickups()}
-      </PickupContainer>
-      {pickupData?.data.pagination && (
-      <PaginationContainer>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={pickupData?.data.pagination.total_pages}
-          onPageChange={handlePageChange}
-        />
-      </PaginationContainer>
-      )}
+      {
+        pickupLoading && (
+        <LoadingPickupCardContainer>
+          <SkeletonText classes="full" />
+        </LoadingPickupCardContainer>
+        )
+      }
+      {
+        !pickupLoading && !pickupError && (
+          <>
+            <PickupContainer>
+              {renderPickups()}
+            </PickupContainer>
+            {pickupData?.data.pagination && (
+            <PaginationContainer>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={pickupData?.data.pagination.total_pages}
+                onPageChange={handlePageChange}
+              />
+            </PaginationContainer>
+            )}
+
+          </>
+        )
+      }
+
       <ToastContainer />
     </MainContainer>
   );

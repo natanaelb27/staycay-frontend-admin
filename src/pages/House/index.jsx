@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -54,11 +53,6 @@ function House() {
     } else if (!houseLoading && houseError && houseError.data.code === 500) {
       navigate('/InternalServerError');
     }
-
-    // if (!houseLoading && !houseError &&
-    // houseData?.data.house_status.toLowerCase() !== 'active') {
-    //   navigate('/');
-    // }
   }, [houseData?.data.house_status, houseLoading, houseError, navigate]);
 
   const findHouseStatusIDByName = (statusName) => (
@@ -76,10 +70,6 @@ function House() {
     if (houseData?.data.house_status.toLowerCase() === 'deactivated by admin') {
       newHouseStatusID = findHouseStatusIDByName('active');
     }
-
-    // if (houseStatusData?.data.house_status === 'deactivated by admin') {
-    //   newHouseStatusID = findHouseStatusIDByName('active');
-    // }
 
     updateHouse({
       houseID: params.houseID,

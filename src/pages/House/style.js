@@ -51,16 +51,6 @@ export const HouseStatusContainer = styled.div`
 
     } 
 
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 50%;
-    gap: 1rem;
-
-    @media (max-width: 300px) {
-        grid-template-columns: 1fr;
-        gap: 0rem;
-
-    } */
 `;
 
 export const ContentContainer = styled.div`

@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-// export const Labels = styled.label`
-//     max-height: 2rem;
-// `;
-
 export const Labels = styled.label`
     display: block;
     color: #374151; 
@@ -11,7 +7,6 @@ export const Labels = styled.label`
     line-height: 1rem; 
     font-weight: 700; 
     letter-spacing: 0.025em; 
-    /* text-transform: uppercase;  */
 
 
     @media (min-width: 768px) { 

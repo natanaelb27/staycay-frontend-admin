@@ -5,9 +5,6 @@ export const ErrorContainer = styled.div`
     display: flex;
     align-content: center;
     gap: 0.5rem;
-    /* display: grid;
-    grid-template-columns: 7% 90%; */
-    /* align-items: center; */
     max-height: 2rem;
     margin-top: 0.5rem;
     font-weight: normal;

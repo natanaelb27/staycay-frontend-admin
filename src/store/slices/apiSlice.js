@@ -66,16 +66,6 @@ export const apiSlice = createApi({
       }),
       providesTags: ['Houses'],
     }),
-    getPickupByReservation: builder.query({
-      query: (reservationID) => ({
-        url: `/pickup/reservation/${reservationID}`,
-        method: 'GET',
-        headers: {
-          authorization: `Bearer ${JSON.parse(localStorage.getItem('admin'))?.token ? JSON.parse(localStorage.getItem('admin'))?.token : ''}`,
-        },
-      }),
-      providesTags: ['Pickups'],
-    }),
     updateHouseByID: builder.mutation({
       query: ({
         houseID,
@@ -174,7 +164,6 @@ export const {
   useGetCityQuery,
   useGetHouseByIDQuery,
   useGetUserByIDQuery,
-  useGetPickupByReservationQuery,
   useDeleteHouseMutation,
   useUpdateHouseByIDMutation,
   useGetHouseStatusesQuery,
