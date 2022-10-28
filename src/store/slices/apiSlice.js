@@ -38,13 +38,23 @@ export const apiSlice = createApi({
       }),
       providesTags: ['Houses'],
     }),
-    getUnscopedHouseByID: builder.query({
-      query: (houseID) => ({
-        url: `/house/unscoped/${parseInt(houseID, 10)}`,
+    getHouseByID: builder.query({
+      query: ({
+        houseID,
+        unscoped = 'false',
+      }) => ({
+        url: `/house/${parseInt(houseID, 10)}?unscoped=${unscoped}`,
         method: 'GET',
       }),
       providesTags: ['Houses'],
     }),
+    // getUnscopedHouseByID: builder.query({
+    //   query: (houseID) => ({
+    //     url: `/house/unscoped/${parseInt(houseID, 10)}`,
+    //     method: 'GET',
+    //   }),
+    //   providesTags: ['Houses'],
+    // }),
     getUserByID: builder.query({
       query: (userID) => ({
         url: `/user/${userID}`,
@@ -58,13 +68,6 @@ export const apiSlice = createApi({
         method: 'GET',
       }),
       providesTags: ['Cities'],
-    }),
-    getHouseByID: builder.query({
-      query: (houseID) => ({
-        url: `/house/${parseInt(houseID, 10)}`,
-        method: 'GET',
-      }),
-      providesTags: ['Houses'],
     }),
     updateHouseByID: builder.mutation({
       query: ({
@@ -160,7 +163,7 @@ export const apiSlice = createApi({
 export const {
   useLoginMutation,
   useLazyGetHouseQuery,
-  useGetUnscopedHouseByIDQuery,
+  // useGetUnscopedHouseByIDQuery,
   useGetCityQuery,
   useGetHouseByIDQuery,
   useGetUserByIDQuery,

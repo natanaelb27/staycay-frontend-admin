@@ -13,7 +13,7 @@ import {
 } from './style';
 import {
   useGetPickupStatusesQuery,
-  useGetUnscopedHouseByIDQuery,
+  useGetHouseByIDQuery,
   useGetUserByIDQuery,
   useGetReservationByIDQuery,
   useUpdatePickupStatusMutation,
@@ -32,7 +32,10 @@ function PickupDetailsCard({
   const {
     data: houseData,
     isLoading: houseLoading,
-  } = useGetUnscopedHouseByIDQuery(pickupData?.house_id);
+  } = useGetHouseByIDQuery({
+    houseID: pickupData?.house_id,
+    unscoped: 'true',
+  });
 
   const {
     data: reservationData,

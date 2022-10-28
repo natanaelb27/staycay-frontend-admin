@@ -41,7 +41,9 @@ function House() {
     data: houseData,
     error: houseError,
     isLoading: houseLoading,
-  } = useGetHouseByIDQuery(params.houseID);
+  } = useGetHouseByIDQuery({
+    houseID: params.houseID,
+  });
 
   const [updateHouse] = useUpdateHouseByIDMutation();
 
