@@ -41,8 +41,6 @@ export const LeftArrow = styled(FaChevronLeft)`
     cursor: pointer;
     padding: 3%;
     border-radius: 20px;
-    /* background-color: white;
-    color: #000; */
     background-color: #000;
     color: white;
     user-select: none;
@@ -58,8 +56,6 @@ export const RightArrow = styled(FaChevronRight)`
     cursor: pointer;
     padding: 3%;
     border-radius: 20px;
-    /* background-color: white;
-    color: #000; */
     background-color: #000;
     color: white;
     user-select: none;
