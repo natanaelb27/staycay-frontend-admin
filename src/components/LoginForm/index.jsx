@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import { showErrorToast } from '../../helpers/Toast';
 import Label from '../common/Label';
 import Input from '../common/Input';
@@ -81,7 +80,6 @@ function LoginForm() {
 
   return (
     <MainContainer>
-      <ToastContainer />
       <Form onSubmit={handleSubmit}>
         <TitleContainer>
           <Title>

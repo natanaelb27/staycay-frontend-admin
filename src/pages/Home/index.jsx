@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  Pagination, MainContainer, Card, SkeletonCard,
+  Pagination, Card, SkeletonCard,
 } from '../../components';
 import { useLazyGetHouseQuery } from '../../store/slices/apiSlice';
 import {
+  MainContainer,
   Container,
   CardContainer,
   SortContainer,

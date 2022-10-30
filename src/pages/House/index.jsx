@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import Button from '../../components/common/Button';
 import DangerModal from '../../components/common/DangerModal';
 import {
@@ -24,7 +23,7 @@ import {
   SpanTitle,
   SpanDetail,
 } from './style';
-import { showErrorToast } from '../../helpers/Toast';
+import { showErrorToast, showSuccessToast } from '../../helpers/Toast';
 import noImageAvailable from '../../assets/no-image-available.jpg';
 
 function House() {
@@ -76,7 +75,17 @@ function House() {
     updateHouse({
       houseID: params.houseID,
       houseStatusID: newHouseStatusID,
-    });
+    })
+      .unwrap()
+      .then(() => {
+        showSuccessToast('House Status Updated Successfully!');
+      })
+      .catch((error) => {
+        if (!error.data) {
+          showErrorToast('Server is currently down, please try again later!');
+        }
+        showErrorToast(error.data.message);
+      });
   };
 
   const onClickTerminateHouse = () => {
@@ -92,6 +101,7 @@ function House() {
       .unwrap()
       .then(() => {
         navigate('/');
+        showSuccessToast('House Deleted Successfully!');
       })
       .catch((error) => {
         if (!error.data) {
@@ -106,7 +116,6 @@ function House() {
 
   return (
     <MainContainer>
-      <ToastContainer />
       <HouseTitleContainer>
         {houseLoading && <SkeletonLine classes="w-30p" />}
         {!houseLoading && !houseError && (

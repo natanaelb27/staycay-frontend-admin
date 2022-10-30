@@ -5,6 +5,7 @@ export const MainContainer = styled.div`
     display: grid;
     align-content: center; 
     place-items: center; 
+    margin-top: 2rem;
 `;
 
 export const TitleContainer = styled.div`

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ToastContainer } from 'react-toastify';
 import Label from '../../components/common/Label';
 import Select from '../../components/common/Select';
 import Input from '../../components/common/Input';
 import Loading from '../../components/common/Loading';
 import { SkeletonText, PickupDetailsCard, Pagination } from '../../components';
 import { useGetPickupStatusesQuery, useLazyGetPickupDetailsQuery } from '../../store/slices/apiSlice';
+import NoDataCard from '../../components/NoDataCard';
 import {
   MainContainer,
   Title,
@@ -15,6 +15,7 @@ import {
   LoadingContainer,
   LoadingPickupCardContainer,
   SpanSelection,
+  NoDataContainer,
   PickupContainer,
   PaginationContainer,
 } from './style';
@@ -168,9 +169,16 @@ function Pickup() {
       {
         !pickupLoading && !pickupError && (
           <>
-            <PickupContainer>
-              {renderPickups()}
-            </PickupContainer>
+            {pickupData?.data.pickup.length <= 0 ? (
+              <NoDataContainer>
+                <NoDataCard />
+              </NoDataContainer>
+            )
+              : (
+                <PickupContainer>
+                  {renderPickups()}
+                </PickupContainer>
+              )}
             {pickupData?.data.pagination && (
             <PaginationContainer>
               <Pagination
@@ -184,8 +192,6 @@ function Pickup() {
           </>
         )
       }
-
-      <ToastContainer />
     </MainContainer>
   );
 }

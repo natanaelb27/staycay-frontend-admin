@@ -97,3 +97,10 @@ export const PaginationContainer = styled.div`
     justify-content: center;
     padding: 2%;
 `;
+
+export const NoDataContainer = styled.div`
+    display: grid;
+    margin-top: 1.5rem;
+    justify-items: center;
+    align-items: center;
+`;

@@ -48,13 +48,6 @@ export const apiSlice = createApi({
       }),
       providesTags: ['Houses'],
     }),
-    // getUnscopedHouseByID: builder.query({
-    //   query: (houseID) => ({
-    //     url: `/house/unscoped/${parseInt(houseID, 10)}`,
-    //     method: 'GET',
-    //   }),
-    //   providesTags: ['Houses'],
-    // }),
     getUserByID: builder.query({
       query: (userID) => ({
         url: `/user/${userID}`,
@@ -163,7 +156,6 @@ export const apiSlice = createApi({
 export const {
   useLoginMutation,
   useLazyGetHouseQuery,
-  // useGetUnscopedHouseByIDQuery,
   useGetCityQuery,
   useGetHouseByIDQuery,
   useGetUserByIDQuery,
