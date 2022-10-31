@@ -36,3 +36,11 @@ export const SortContainer = styled.div`
         padding-right: 1rem;
     }
 `;
+
+export const NoDataContainer = styled.div`
+    display: grid;
+    min-height: 33vh;
+    margin-top: 1rem;
+    justify-items: center;
+    align-items: center;
+`;

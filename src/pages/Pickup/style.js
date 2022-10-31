@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
     place-items: center; 
     padding-left: 15%;
     padding-right: 15%; 
+    min-height: 43vh;
 
 
     @media (max-width: 500px) {

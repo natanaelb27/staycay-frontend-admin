@@ -9,10 +9,12 @@ import {
   Container,
   CardContainer,
   SortContainer,
+  NoDataContainer,
 } from './style';
 import Select from '../../components/common/Select';
 import Label from '../../components/common/Label';
 import noImageAvailable from '../../assets/no-image-available.jpg';
+import NoDataCard from '../../components/NoDataCard';
 
 function Home() {
   const {
@@ -153,13 +155,29 @@ function Home() {
             </Select>
           </Label>
         </SortContainer>
+
+        {houseLoading && (
         <CardContainer>
-          {houseLoading && (renderLoading())}
-          {!houseLoading && houseError && <p>{houseError}</p>}
-          {!houseLoading && !houseError && (
-            renderHouses()
-          )}
+          {renderLoading()}
         </CardContainer>
+        )}
+
+        {
+          !houseLoading && houseData?.data.house.length > 0
+            ? (
+              <CardContainer>
+                {!houseLoading && !houseError && (
+                  renderHouses()
+                )}
+              </CardContainer>
+
+            ) : (
+              <NoDataContainer>
+                <NoDataCard />
+              </NoDataContainer>
+            )
+        }
+
         {houseData?.data.pagination && (
         <Pagination
           currentPage={currentPage}
