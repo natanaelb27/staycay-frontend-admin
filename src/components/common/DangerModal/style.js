@@ -19,7 +19,11 @@ export const ModalContainer = styled.div`
     &.show {
         opacity: 1;
         pointer-events: visible;
+    }
 
+    @media (max-width: 768px) {
+        align-items: flex-end;
+        justify-content: center;
     }
 `;
 
@@ -32,6 +36,16 @@ export const ModalContent = styled.div`
 
     &.show {
         transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: fit-content;
+        padding-bottom: 5rem;
+        border-radius: 30px;
+
+        transform: translateY(200%);
+        transition: all 0.3s ease-in-out;
     }
 `;
 
@@ -60,4 +74,7 @@ export const ModalFooter = styled.div`
     grid-template-columns: 20% 20%;
     gap: 1rem;
 
+    @media (max-width: 768px){
+        grid-template-columns: 100%;   
+    }
 `;

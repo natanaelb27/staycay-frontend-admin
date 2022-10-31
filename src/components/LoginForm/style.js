@@ -46,5 +46,5 @@ export const MainInputContainer = styled.div`
 
 export const InputContainer = styled.div`
     margin-bottom: 1.5rem; 
-    width: 95%;
+    width: 100%;
 `;
