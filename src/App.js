@@ -5,7 +5,6 @@ import Routes from './routes';
 import AuthVerify from './helpers/AuthVerify';
 
 function App() {
-  console.log(process.env.REACT_APP_API_URL);
   return (
     <BrowserRouter>
       <ToastContainer />
